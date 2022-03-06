@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Button, TextField, Radio, RadioGroup, FormLabel, FormControl, FormControlLabel }  from '@mui/material';
 import Results from './Results';
 import Summary from './Summary';
 import API from '../api/api';
 
-export default function SearchBar (props) {
-    const [submitValue, setSubmitValue] = useState('');
+const SearchBar = () => {
     const [inputValue, setInputValue] = useState('');
     const [radioValue, setRadioValue] = useState('');
     const [error, setError] = useState(false);
@@ -29,13 +28,40 @@ export default function SearchBar (props) {
         if(!inputValue) {
             setError(true);
         } else {
-            setSubmitValue(inputValue);
+            setError(false);
+            const setCountryState = (list) => {
+                setCountries(list);
+            }
+    
+            if(radioValue === 'code') {
+                await API.getCountriesByCode(inputValue, setCountryState);
+            } else if(radioValue === 'name') {
+                await API.getCountriesByName(inputValue, setCountryState);
+            } else {    
+                await API.getCountriesByFullName(inputValue, setCountryState);
+            }
+
+            if(countries.length === 0) {
+                setError(true);
+            }
+
         }
         
     }
 
+    const returnResults = () => {
+        if(!error && countries.countries?.length > 0) {
+            return (
+                <Fragment>
+                    <Results info={countries}></Results>
+                    <Summary info={countries}></Summary>
+                </Fragment>    
+            )
+        }
+    }
+
     const returnTextInput = () => {
-        if(error && !submitValue) {
+        if(error && !inputValue) {
            return ( 
             <TextField 
                 id="outlined-basic" 
@@ -72,29 +98,6 @@ export default function SearchBar (props) {
         }
     }
 
-    useEffect(() => {
-        const setCountryState = (list) => {
-            setCountries(list);
-        }
-
-        (async () => {
-            if(radioValue === 'code') {
-                await API.getCountriesByCode(submitValue, setCountryState);
-            } else if(radioValue === 'name') {
-                await API.getCountriesByName(submitValue, setCountryState);
-            } else {    
-                await API.getCountriesByFullName(submitValue, setCountryState);
-            }
-
-            if(countries.length === 0) {
-                setError(true);
-            }
-        })();
-
-    }, [submitValue]);
-
-
-
     return (
         <div>
             <form>
@@ -113,14 +116,13 @@ export default function SearchBar (props) {
                     </RadioGroup>
                 </FormControl>
                 <FormControl>
-                    {returnTextInput}
+                    {returnTextInput()}
                 </FormControl>
-                    
-                
-                <Button onClick={onSubmit} variant="contained">Submit</Button>
             </form>
-            <Results countries={countries}></Results>
-            <Summary countries={countries}></Summary>
+            <Button onClick={onSubmit} variant="contained">Submit</Button>
+            {returnResults()}
         </div>
     )
 }
+
+export default SearchBar;

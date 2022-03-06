@@ -1,11 +1,15 @@
 import React from 'react';
 
 export default function Results (props) {
-    const { countries } = props;
+    let { info } = props;
+    let { countries } = info;
+    const names = countries.map((c,i) => {
+        return (<li key={i}>{c.name.common}</li>)
+    });
 
     return (
-        <div>
-            {countries.countries}
-        </div>
+        <ul>
+            {names}
+        </ul>
     )
 }

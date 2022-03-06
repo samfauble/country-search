@@ -1,8 +1,8 @@
-import {
+const {
     validateData,
     sortCountries,
     calculateSummaryData
-} from "../helpers/processResponse";
+} = require("../helpers/processResponse");
 
 describe("validateData", () => {
     test("returning correct value for null data", () => {

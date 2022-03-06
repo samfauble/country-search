@@ -1,13 +1,13 @@
-const processResponse = (countries) => {
-    const validatedResults = validateData(countries);
-    const sortedResults = sortCountries(validatedResults);
+const processResponse = async (countries) => {
+    let parsed = await countries.json();
+    const sortedResults = sortCountries(parsed);
     const summary = calculateSummaryData(sortedResults);
     const payload = {
         countries: sortedResults,
         summary
     };
 
-    return JSON.stringify(payload);
+    return payload;
 }
 
 /**
@@ -18,8 +18,8 @@ const processResponse = (countries) => {
  */
 const validateData = (country) => {
     Object.keys(country).forEach((attr) => {
-       if(attr === 'languages' && country[attr].length === 0) {
-        country[attr].push('No languages available');
+       if(attr === 'languages' && Object.keys(country[attr]).length === 0) {
+        country[attr]['none'] = 'No languages available';
        } 
 
        if(!country[attr]) {
@@ -37,7 +37,7 @@ const validateData = (country) => {
  */
 const sortCountries = (countries) => {
     let res = countries;
-    res.sort((a, b) => {return b.code - a.code});
+    res.sort((a, b) => {return b.name.common.localeCompare(a.name.common)});
     return res;
 }
 
@@ -74,11 +74,17 @@ const calculateSummaryData = (countries) => {
     return summary;
 }
 
+const returnFetch = async function () {
+	return await (await import('node-fetch')).default;
+};
+
+
 
 
 module.exports = {
     validateData,
     sortCountries,
     calculateSummaryData,
-    processResponse
+    processResponse,
+    returnFetch
 }
