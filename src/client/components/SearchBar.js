@@ -34,11 +34,11 @@ const SearchBar = () => {
             }
     
             if(radioValue === 'code') {
-                await API.getCountriesByCode(inputValue, setCountryState);
+                await API.getCountriesByCode(inputValue, setCountryState, setError);
             } else if(radioValue === 'name') {
-                await API.getCountriesByName(inputValue, setCountryState);
+                await API.getCountriesByName(inputValue, setCountryState, setError);
             } else {    
-                await API.getCountriesByFullName(inputValue, setCountryState);
+                await API.getCountriesByFullName(inputValue, setCountryState, setError);
             }
 
             if(countries.length === 0) {

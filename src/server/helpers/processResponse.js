@@ -1,11 +1,17 @@
 const processResponse = async (countries) => {
-    let parsed = await countries.json();
-    const sortedResults = sortCountries(parsed);
-    const summary = calculateSummaryData(sortedResults);
-    const payload = {
+    let payload;
+    try {
+        let parsed = await countries.json();
+        const sortedResults = sortCountries(parsed);
+        const summary = calculateSummaryData(sortedResults);
+        payload = {
         countries: sortedResults,
         summary
     };
+    } catch (e) {
+        console.log(e);
+    }
+    
 
     return payload;
 }

@@ -14,15 +14,21 @@ const getCountriesByCode = async (req, res) => {
     
     try {
         const results = await fetch(url, options);
-        const payload = await processResponse(results);
+        
+        if(!results.ok) {
+            throw new Error("No countries found");
+        }
 
+        const payload = await processResponse(results);
         if(payload.countries.length === 0) {
             res.status(204).send("No Content");
         } else {
             res.status(200).send(payload);
         }
+
     } catch (e) {
-        console.log(e);
+        console.error(e);
+        res.status(404).send();
     }
 
 }
@@ -40,6 +46,11 @@ const getCountriesByName = async (req, res) => {
     
     try {
         const results = await fetch(url, options);
+        
+        if(!results.ok) {
+            throw new Error("No countries found");
+        }
+
         const payload = await processResponse(results);
         if(payload.countries.length === 0) {
             res.status(204).send("No Content");
@@ -49,6 +60,7 @@ const getCountriesByName = async (req, res) => {
 
     } catch (e) {
         console.error(e);
+        res.status(404).send();
     }
 
 }
@@ -66,6 +78,11 @@ const getCountriesByFullName = async (req, res) => {
     
     try {
         const results = await fetch(url, options);
+        
+        if(!results.ok) {
+            throw new Error("No countries found");
+        }
+
         const payload = await processResponse(results);
         if(payload.countries.length === 0) {
             res.status(204).send("No Content");
@@ -75,6 +92,7 @@ const getCountriesByFullName = async (req, res) => {
 
     } catch (e) {
         console.error(e);
+        res.status(404).send();
     }
 }
 
