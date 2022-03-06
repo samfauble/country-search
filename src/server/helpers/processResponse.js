@@ -1,34 +1,51 @@
-const processResponse = () => {
-
-}
-
 const validateData = (country) => {
     Object.keys(country).forEach((attr) => {
-        let val = country[attr];
-
-       if(attr === 'languages' && val.length === 0) {
-           val.push('No languages available');
+       if(attr === 'languages' && country[attr].length === 0) {
+        country[attr].push('No languages available');
        } 
 
-       if(!val) val = `No ${attr} available`;
+       if(!country[attr]) {
+            country[attr] = `No ${attr} available`;
+       }
     });
-
 
     return country;
 }
 
-const sortCountries = () => {
-
+const sortCountries = (countries) => {
+    let res = countries;
+    res.sort((a, b) => {return b.code - a.code});
+    return res;
 }
 
-const calculateSummaryData = () => {
+const calculateSummaryData = (countries) => {
+    let summary = {
+        regions: {},
+        subregions: {},
+        total: countries.length
+    };
 
+    countries.forEach((country) => {
+        let {region, subregion} = country;
+        if(summary.regions[region]) {
+            summary.regions[region].push(country.name); 
+        } else {
+            summary.regions[region] = [country.name]; 
+        }
+
+        if(summary.subregions[subregion]) {
+            summary.subregions[subregion].push(country.name); 
+        } else {
+            summary.subregions[subregion] = [country.name]; 
+        }
+    });
+
+    return summary;
 }
 
 
 
 module.exports = {
-    processResponse,
     validateData,
     sortCountries,
     calculateSummaryData

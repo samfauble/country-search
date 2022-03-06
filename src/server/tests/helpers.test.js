@@ -12,15 +12,15 @@ describe("validateData", () => {
             alphaCode2: 321,
             region: "Europe",
             subregion: "Scandinavia",
-            population: undefined,
+            population: 0,
             languages: []
         }
 
         let res = validateData(country1);
 
-        expect(res.languages[0]).toBe('Information for languages is unavailable');
-        expect(res.population).toBe('Information for population is unavailable');
-        expect(res.name).toBe("Sample");
+        expect(res.languages[0]).toEqual('No languages available');
+        expect(res.population).toEqual('No population available');
+        expect(res.name).toEqual("Sample");
     });
     test("No changes for complete data", () => {
         let country2 = {
@@ -45,27 +45,31 @@ describe("validateData", () => {
 });
 
 describe("sortCountries", () => {
-    test("sort countries in descending order by name", () => {
+    test("sort countries in descending order by code", () => {
         const country1 = {
-            name: "Azerbaijan"
+            name: "French Guyana",
+            code: 1
         }
         const country2 = {
-            name: "Zanzibar"
+            name: "Zanzibar",
+            code: 4
         }
         const country3 = {
-            name: "Nepal"
+            name: "Azerbaijan",
+            code: 3
         }
         const country4 = {
-            name: "French Guyana"
+            name: "Nepal",
+            code: 2
         }
 
-        let answer = [country1, country4, country3, country2];
+        let answer = [country2, country3, country4, country1];
         let list1 = [country1, country4, country3, country2];
         let list2 = [country4, country2, country3, country1];
 
-        expect(sortCountries(list1)).toBe(answer);
-        expect(sortCountries(list2)).toBe(answer);
-        expect(sortCountries([])).toBe([]);
+        expect(sortCountries(list1)).toEqual(answer);
+        expect(sortCountries(list2)).toEqual(answer);
+        expect(sortCountries([])).toEqual([]);
     });
 });
 
@@ -99,9 +103,9 @@ describe("calculateSummaryData", () => {
 
         let res = calculateSummaryData([c1, c2, c3, c4, c5]);
 
-        expect(res.countries).toBe(5);
-        expect(res.regions["MENA"]).toBe(3);
-        expect(res.subregions["Gulf"]).toBe(2);
-        expect(res.subregions["Central Asia"]).toBe(1);
+        expect(res.total).toBe(5);
+        expect(res.regions["MENA"].length).toBe(3);
+        expect(res.subregions["Gulf"].length).toBe(2);
+        expect(res.subregions["Central Asia"].length).toBe(1);
     });
 });
