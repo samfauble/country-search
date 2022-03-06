@@ -8,8 +8,8 @@ const {
 } = require('../controllers/controller');
 
 countryRouter
-    .get('/code', getCountriesByCode)
-    .get('/name', getCountriesByName)
-    .get('/fullName', getCountriesByFullName)
+    .get('/code/:code', getCountriesByCode)
+    .get('/name/:name', getCountriesByName)
+    .get('/fullName/:fullName', getCountriesByFullName)
 
 module.exports = countryRouter;

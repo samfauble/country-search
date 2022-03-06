@@ -1,3 +1,15 @@
+const processResponse = (countries) => {
+    const validatedResults = validateData(countries);
+    const sortedResults = sortCountries(validatedResults);
+    const summary = calculateSummaryData(sortedResults);
+    const payload = {
+        countries: sortedResults,
+        summary
+    };
+
+    return JSON.stringify(payload);
+}
+
 /**
  * Verifies that all data has a value
  * Fills in missing data
@@ -67,5 +79,6 @@ const calculateSummaryData = (countries) => {
 module.exports = {
     validateData,
     sortCountries,
-    calculateSummaryData
+    calculateSummaryData,
+    processResponse
 }
