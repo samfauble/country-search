@@ -1,13 +1,13 @@
 export default class API {
-    static getCountriesByCode (query, setCountries) {
+    static async getCountriesByCode (query, setCountries) {
 
     }
 
-    static getCountriesByName (query, setCountries) {
+    static async getCountriesByName (query, setCountries) {
         
     }
 
-    static getCountriesByFullName (query, setCountries) {
+    static async getCountriesByFullName (query, setCountries) {
         
     }
 }
