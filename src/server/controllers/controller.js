@@ -11,9 +11,14 @@ const getCountriesByCode = async (req, res) => {
     try {
         const results = await fetch(url, options);
         const payload = processResponse(results);
-        res.send(payload);
+
+        if(payload.countries.length === 0) {
+            res.status(204).send("No Content");
+        } else {
+            res.status(200).send(payload);
+        }
     } catch (e) {
-        console.error(e);
+        console.log(e);
     }
 
 }
@@ -28,7 +33,11 @@ const getCountriesByName = async (req, res) => {
     try {
         const results = await fetch(url, options);
         const payload = processResponse(results);
-        res.send(payload);
+        if(payload.countries.length === 0) {
+            res.status(204).send("No Content");
+        } else {
+            res.status(200).send(payload);
+        }
 
     } catch (e) {
         console.error(e);
@@ -46,7 +55,11 @@ const getCountriesByFullName = async (req, res) => {
     try {
         const results = await fetch(url, options);
         const payload = processResponse(results);
-        res.send(payload);
+        if(payload.countries.length === 0) {
+            res.status(204).send("No Content");
+        } else {
+            res.status(200).send(payload);
+        }
 
     } catch (e) {
         console.error(e);

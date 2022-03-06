@@ -4,6 +4,8 @@ export default function Results (props) {
     const { countries } = props;
 
     return (
-        <div></div>
+        <div>
+            {countries.countries}
+        </div>
     )
 }

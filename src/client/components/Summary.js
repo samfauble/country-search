@@ -4,6 +4,8 @@ export default function Summary (props) {
     const { countries } = props;
 
     return (
-        <div></div>
+        <div>
+            {countries.summary}
+        </div>
     )
 }

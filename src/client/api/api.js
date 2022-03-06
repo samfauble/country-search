@@ -16,7 +16,7 @@ export default class API {
             console.error(e);
         }
 
-        return results;
+        setCountries(results);
     }
 
     static async getCountriesByName (query, setCountries) {
@@ -33,7 +33,7 @@ export default class API {
             console.error(e);
         }
 
-        return results;
+        setCountries(results);
     }
 
     static async getCountriesByFullName (query, setCountries) {
@@ -50,6 +50,6 @@ export default class API {
             console.error(e);
         }
 
-        return results;
+        setCountries(results);
     }
 }
