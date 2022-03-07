@@ -43,14 +43,14 @@ export default function Results (props) {
     });
 
     return (
-        <Fragment>
+        <div className='vertical-spacing'>
             <h2>Countries</h2>
-            <table>
+            <table className='center'>
                 <tbody>
                     {tableRows}
                 </tbody>
             </table>
-        </Fragment>
+        </div>
         
     )
 }

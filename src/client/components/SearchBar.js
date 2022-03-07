@@ -50,10 +50,11 @@ const SearchBar = (props) => {
            return ( 
             <TextField 
                 id="outlined-basic" 
-                label="Query" 
+                label="Search" 
                 variant="outlined"
                 value={inputValue}
                 onChange={onInputChange} 
+                className='horizontal-center'
                 error
                 helperText="Please enter a value into the space provided"
                 /> 
@@ -62,21 +63,23 @@ const SearchBar = (props) => {
             return ( 
                 <TextField 
                     id="outlined-basic" 
-                    label="Query" 
+                    label="Search" 
                     variant="outlined" 
                     value={inputValue}
                     onChange={onInputChange} 
+                    className='horizontal-center'
                     error
-                    helperText="Query found no matching countries"
+                    helperText="Search found no matching countries"
                     /> 
                 )  
         } else {
             return ( 
                 <TextField 
                     id="outlined-basic" 
-                    label="Query" 
+                    label="Search" 
                     variant="outlined" 
                     value={inputValue}
+                    className='horizontal-center'
                     onChange={onInputChange} 
                     /> 
                 )  
@@ -84,7 +87,7 @@ const SearchBar = (props) => {
     }
 
     return (
-        <div>
+        <div className='vertical-spacing'>
             <form>
                 <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">Search By:</FormLabel>
@@ -92,6 +95,7 @@ const SearchBar = (props) => {
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue="name"
                         name="radio-buttons-group"
+                        className='horizontal-spacing'
                         value={radioValue}
                         onChange={onRadioChange}
                         >

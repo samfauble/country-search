@@ -1,9 +1,8 @@
 import React, { useState, Fragment } from 'react';
-import { Button, TextField, Radio, RadioGroup, FormLabel, FormControl, FormControlLabel }  from '@mui/material';
-import API from './api/api';
 import SearchBar from './components/SearchBar';
 import Results from './components/Results';
 import Summary from './components/Summary';
+import './App.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -21,6 +20,7 @@ function App() {
 }
   return (
     <div className="App">
+      <h1>Country Search</h1>
       <SearchBar 
         setCountries={setCountries} 
         countries={countries}

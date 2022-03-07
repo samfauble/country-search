@@ -49,21 +49,21 @@ export default function Summary (props) {
     });
 
     return (
-        <Fragment>
+        <div className='vertical-spacing'>
             <h2>Summary</h2>
             <h3>Total Number of countries: {summary.total}</h3>
             <h4>Regions</h4>
-            <table>
+            <table className='center'>
                 <tbody>
                     {regionTableRows}
                 </tbody>
             </table>
             <h4>Subregions</h4>
-            <table>
+            <table className='center'>
                 <tbody>
                     {subregionTableRows}
                 </tbody>
             </table>
-        </Fragment>
+        </div>
     )
 }
