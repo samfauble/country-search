@@ -33,20 +33,19 @@ const SearchBar = () => {
                 setCountries(list);
             }
     
+            let res;
             if(radioValue === 'code') {
-                await API.getCountriesByCode(inputValue, setCountryState, setError);
+                res = await API.getCountriesByCode(inputValue, setCountryState, setError);
             } else if(radioValue === 'name') {
-                await API.getCountriesByName(inputValue, setCountryState, setError);
+                res = await API.getCountriesByName(inputValue, setCountryState, setError);
             } else {    
-                await API.getCountriesByFullName(inputValue, setCountryState, setError);
+                res = await API.getCountriesByFullName(inputValue, setCountryState, setError);
             }
 
-            if(countries.length === 0) {
-                setError(true);
+            if(!res || res.countries.length === 0) {
+                setError(true)
             }
-
-        }
-        
+        }   
     }
 
     const returnResults = () => {

@@ -50,6 +50,7 @@ export default function Summary (props) {
 
     return (
         <Fragment>
+            <h2>Summary</h2>
             <h3>Total Number of countries: {summary.total}</h3>
             <h4>Regions</h4>
             <table>

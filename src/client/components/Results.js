@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {v4 as uuid} from 'uuid';
 
 export default function Results (props) {
@@ -43,10 +43,14 @@ export default function Results (props) {
     });
 
     return (
-        <table>
-            <tbody>
-                {tableRows}
-            </tbody>
-        </table>
+        <Fragment>
+            <h2>Countries</h2>
+            <table>
+                <tbody>
+                    {tableRows}
+                </tbody>
+            </table>
+        </Fragment>
+        
     )
 }

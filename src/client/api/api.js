@@ -16,6 +16,7 @@ export default class API {
             let response = await fetch(url, options);
             results = await response.json();
             setCountries(results);
+            return results;
         } catch (e) {
             console.error(e);
             setCountries([]);
@@ -36,7 +37,8 @@ export default class API {
         try {
             let response = await fetch(url, options);
             results = await response.json();
-            setCountries(results);
+            await setCountries(results);
+            return results;
         } catch (e) {
             console.error(e);
             setCountries([]);
@@ -58,12 +60,11 @@ export default class API {
             let response = await fetch(url, options);
             results = await response.json();
             setCountries(results);
+            return results;
         } catch (e) {
             console.error(e);
             setCountries([]);
             setError(true);
         }
-
-        
     }
 }
