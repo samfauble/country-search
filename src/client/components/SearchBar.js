@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Button, TextField, Radio, RadioGroup, FormLabel, FormControl, FormControlLabel }  from '@mui/material';
 import API from '../api/api';
 
+/**
+ * The input form used to make queries
+ * @param {*} props 
+ * @returns 
+ */
 const SearchBar = (props) => {
     const {countries, setCountries, error, setError} = props;
     const [inputValue, setInputValue] = useState('');
@@ -22,14 +27,17 @@ const SearchBar = (props) => {
     
     const onSubmit = async (e) => {
         e.stopPropagation();
+        
+        //if no input, error = true and skip
         if(!inputValue) {
-            setError(true);
+            setError(true);     
         } else {
             setError(false);
             const setCountryState = (list) => {
                 setCountries(list);
             }
     
+            //send API request
             let res;
             if(radioValue === 'code') {
                 res = await API.getCountriesByCode(inputValue, setCountryState, setError);
@@ -39,13 +47,15 @@ const SearchBar = (props) => {
                 res = await API.getCountriesByFullName(inputValue, setCountryState, setError);
             }
 
+            //if no countries in response, error = true
             if(!res || res.countries.length === 0) {
-                setError(true)
+                setError(true)      
             }
         }   
     }
 
-    const returnTextInput = () => {
+    //return input component based on state values
+    const handleTextInput = () => {
         if(error && !inputValue) {
            return ( 
             <TextField 
@@ -105,7 +115,7 @@ const SearchBar = (props) => {
                     </RadioGroup>
                 </FormControl>
                 <FormControl>
-                    {returnTextInput()}
+                    {handleTextInput()}
                 </FormControl>
             </form>
             <Button onClick={onSubmit} variant="contained">Submit</Button>

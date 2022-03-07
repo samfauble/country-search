@@ -1,10 +1,17 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {v4 as uuid} from 'uuid';
 
+/**
+ * A table that displays country information
+ * @param {*} props 
+ * @returns 
+ */
 export default function Results (props) {
     let { info } = props;
     let { countries } = info;
     const tableRows = [];
+    
+    //create table headers
     const headerId = uuid();
     const headers = (
         <tr key={headerId}>
@@ -18,9 +25,9 @@ export default function Results (props) {
             <th>languages</th>
         </tr>
     )
-
     tableRows.push(headers);
 
+    //add table rows
     countries.forEach((c, i) => {
         const languages = Object.keys(c.languages).map((l) => {
             return ` ${c.languages[l]} `;

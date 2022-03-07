@@ -1,10 +1,17 @@
 import React, {Fragment} from 'react';
 import {v4 as uuid} from 'uuid';
 
+/**
+ * A table that displays the summary of the search results
+ * @param {*} props 
+ * @returns 
+ */
 export default function Summary (props) {
     const { info } = props;
     const { summary } = info;
     const regionTableRows = [];
+    
+    //create region headers
     const headerKey = uuid();
     const regionHeaders = (
         <tr key={headerKey}>
@@ -14,16 +21,7 @@ export default function Summary (props) {
     )
     regionTableRows.push(regionHeaders);
 
-    const subregionTableRows = [];
-    const headerId = uuid();
-    const subregionHeaders = (
-        <tr key={headerId}>
-            <th>subregion</th>
-            <th>num_countries_in_subregion</th>
-        </tr>
-    )
-    subregionTableRows.push(subregionHeaders);
-
+    //create region table data rows
     Object.keys(summary.regions).forEach((r, i) => {
         let arr = summary.regions[r];
         let id = uuid();
@@ -36,6 +34,18 @@ export default function Summary (props) {
         regionTableRows.push(row);
     });
 
+    //create subregion headers
+    const subregionTableRows = [];
+    const headerId = uuid();
+    const subregionHeaders = (
+        <tr key={headerId}>
+            <th>subregion</th>
+            <th>num_countries_in_subregion</th>
+        </tr>
+    )
+    subregionTableRows.push(subregionHeaders);
+
+    //create subregion table rows
     Object.keys(summary.subregions).forEach((s, i) => {
         let arr = summary.subregions[s];
         let id = uuid();
