@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Getting Started with Country Search
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements
 
-## Available Scripts
+This project came with a set of requirements to build for. The following are the requirements against which I built the apps:
 
-In the project directory, you can run:
+1. Use the REST Countries third party API
+2. User should fill out an HTML form for searches
+3. Emit error message if user submits the form without input OR the search yields no results
+4. The client submits input to the backend app
+5. The client displays the search results from the backend app on an HTML page
+6. The backend app can be in Node, PHP, or another backend technology
+7. The backend app should query the third party API
+8. The backend app should return a JSON object with all necessary data
+9. The backend app should process the results and sort the countries in decsending order
+10. The user should be able to search by the country's full name, name, or its country code
+11. Each country displayed should include the following information:
+    - The full, official name
+    - alpha code 2
+    - alpha code 3
+    - flag image
+    - region
+    - subregion
+    - population
+    - languages
+12. The bottom of the page should include a summary of the search results, including:
+    - Each region included in the results
+    - Each subregion included in the results
+    - The number of times a given region appears in the results
+    - The number of times a given subregion appears in the results
+    - The total number of countries present in the results
 
-### `npm start`
+## Assumptions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Given time constraints, I made a couple assumptions with regards to the requirements while building the app. The assumptions are as follows:
+- I assumed "results sorted in descending order" to refer to "results sorted in descending order by official name"
+- I assumed that Material UI components would conform to the HTML element requirement since the base of those components are HTML elements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tooling
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) for the frontend app with Material UI components used in the search form. The backend app was made as a standard Node/Express server.
+
+## Setup
+
+To set up the app:
+1. Clone the repo
+2. Navigate to the root directory
+3. run `npm install`
+4. Make sure ports 3000 and 4000 are free
+5. run `npm run startServer` to spin up the backend app server
+6. run `npm run start` to spin up the frontend dev server
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
-### `npm run build`
+### Debugging
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+There is a `launch.json` file that contains debugging scripts that can be run for both the frontend and the backend app
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
