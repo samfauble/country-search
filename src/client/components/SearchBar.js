@@ -1,14 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Button, TextField, Radio, RadioGroup, FormLabel, FormControl, FormControlLabel }  from '@mui/material';
-import Results from './Results';
-import Summary from './Summary';
 import API from '../api/api';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+    const {countries, setCountries, error, setError} = props;
     const [inputValue, setInputValue] = useState('');
     const [radioValue, setRadioValue] = useState('');
-    const [error, setError] = useState(false);
-    const [countries, setCountries] = useState([]);
 
     const onRadioChange = (e) => {
         e.stopPropagation();
@@ -46,17 +43,6 @@ const SearchBar = () => {
                 setError(true)
             }
         }   
-    }
-
-    const returnResults = () => {
-        if(!error && countries.countries?.length > 0) {
-            return (
-                <Fragment>
-                    <Results info={countries}></Results>
-                    <Summary info={countries}></Summary>
-                </Fragment>    
-            )
-        }
     }
 
     const returnTextInput = () => {
@@ -119,7 +105,6 @@ const SearchBar = () => {
                 </FormControl>
             </form>
             <Button onClick={onSubmit} variant="contained">Submit</Button>
-            {returnResults()}
         </div>
     )
 }
