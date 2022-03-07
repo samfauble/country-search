@@ -43,7 +43,7 @@ const validateData = (country) => {
  */
 const sortCountries = (countries) => {
     let res = countries;
-    res.sort((a, b) => {return b.name.common.localeCompare(a.name.common)});
+    res.sort((a, b) => {return b.name.official.localeCompare(a.name.official)});
     return res;
 }
 
